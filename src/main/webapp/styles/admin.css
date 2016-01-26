@@ -1478,3 +1478,26 @@ div#profile-send-alt{
 	margin-top: -258px;
 	margin-left: 462px;
 }
+
+div.box-item-info{
+	position: absolute;
+	display: none;
+	width: 200px;
+	box-shadow: 0 0 5px #c0c0c0;
+}
+div.box-item-info img.bg{ width: 100%; border-radius: 3px 3px 0 0}
+div.box-item-info img.avatar{
+	position: absolute;
+	width: 30%;
+	border-radius: 2px;
+	margin-top: 15px;
+	margin-left: 15px;
+}
+div.box-item-info a:hover, div.box-item-info a:active{ text-decoration: underline; color: #222}
+div.box-item-info span{
+	display: block;
+	font-weight: bold;
+	font-size: 14px;
+	color: #222;
+	padding-bottom: 5px;
+}

@@ -1,7 +1,13 @@
-<script type="text/javascript">
-    $("#datepicker").datepicker();
-</script>
 <div ng-controller="DataCtrl">
+
+<div class="box box-item-info">
+	<img class="avatar" ng-src="images/profiles/{{image}}" onerror="this.src='images/profiles/error.png';">
+	<img class="bg" ng-src="images/profiles/bg.jpg" onerror="this.src='images/profiles/default.jpg'">
+	<a href="/participants/{{itemId}}">
+		<span>{{firstName}} {{lastName}}</span>
+	</a>
+</div>
+
 <div class="send-test">
 	<div id="close-box" ></div>
 	<div id="main">
@@ -20,9 +26,9 @@
 		<form method="POST">
 		<div class="action">
 			<table>
-				<tr ng-if="dataTable == 'users'">
+				<tr ng-if="dataTable === 'users'">
 					<td>Username</td>
-					<td><input type="text" ng-model="firstName" size="30"></td>
+					<td><input type="text" ng-model="username" size="30"></td>
 				</tr>
 				<tr>
 					<td>First Name</td>
@@ -38,7 +44,7 @@
 				</tr> -->
 				<tr ng-if="dataTable != 'users'">
 					<td>City</td>
-					<td><input type="text"></td>
+					<td><input type="text" ng-model="city"></td>
 				</tr>
 				<tr ng-if="dataTable == 'users'">
 					<td>Role</td>
@@ -102,7 +108,7 @@
 				</tr>
 				<tr>
 					<td>Email</td>
-					<td><input type="email"></td>
+					<td><input type="email" ng-model="email"></td>
 				</tr>
 			</table>
 		</div>
@@ -142,9 +148,17 @@
 			<th ng-class = "{'sort-up':isSortUp('taken'), 'sort-down':isSortDown('taken')}" ng-click="sort('taken')" ng-if="dataTable == 'participants'" style="padding-right:15px">Taken</th>
 		</thead>
 		<tbody>
-			<tr class="hover-tr" ng-repeat="dataColumn in lengthClientsPA = (dataTableList | filter:{firstName:searchNameA, taken:selectTaken, email:searchEmailA, role:selectRole} | orderBy: sortField:reverse)" ng-if="$index >= (currentPage * pageSize) && $index < ((currentPage+1)*pageSize)">
+			<tr class="hover-tr" ng-repeat="dataColumn in lengthClientsPA = (dataTableList | 
+			filter:{ firstName:searchNameA, taken:selectTaken, email:searchEmailA, role:selectRole} | 
+			orderBy: sortField:reverse)" 
+			ng-if="$index >= (currentPage * pageSize) && $index < ((currentPage+1)*pageSize)" 
+			ng-click="currentItem(dataColumn.participantId, false)" 
+			ng-dblclick="currentItem(dataColumn.participantId, true)">
 
-				<td class="td-status"><a href="/participants/{{dataColumn.id}}"><img ng-src="images/profiles/{{dataColumn.image}}" onerror="this.src='images/profiles/error.png';" style="border-radius: 100%;"></a></td>
+				<td class="td-status">
+					<a href="/participants/{{dataColumn.id}}">
+					<img ng-src="images/profiles/{{dataColumn.image}}" onerror="this.src='images/profiles/error.png';" style="border-radius: 100%;">
+				</a></td>
 				<td class="td-name">
 					<b ng-if="dataTable === 'participants'"><a href="/participants/{{dataColumn.participantId}}"></b>
 					<!-- <b ng-if="dataTable === 'users'"><a href="/users/{{dataColumn.userId}}"></b> -->
@@ -174,7 +188,7 @@
  				<span id="currentPage" ng-if="(currentPage + 3) <= pageNumber" ng-click="paging(currentPage)">{{currentPage + 3}}</span>
 				<button ng-click="paging(1)">Next</button>
  				</td>
-			<td><div class="altContainer"></div><button class="send">New</button></td>
+			<td><div class="altContainer"></div><button class="send" ng-click="clearFields()">New</button></td>
 		</tr>
 	</table>
 </div>

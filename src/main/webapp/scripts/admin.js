@@ -86,6 +86,15 @@ $(document).on("click","span#selectLang", function(){
 $(document).on("click","#logout", function(){
 		window.location.assign('login?logout');
 });
+$(document).on("click","tr.hover-tr", function(e){
+	$(this).data('timeout', setTimeout( function () {
+	    $('div.box-item-info').css({ 'top':e.pageY - 150,'left':e.pageX });
+	    $('div.box-item-info').fadeIn("fast");
+    }, 500));
+ });
+$(document).on("click","div.box-item-info", function(e){
+	    $('div.box-item-info').fadeOut("fast");
+ });
 // $(document).on("mouseover","button.send", function(){
 // 	$(this).data('timeout', setTimeout( function () {
 // 		$("div.altContainer").html("<div class='alt'>Add new participant</div>");

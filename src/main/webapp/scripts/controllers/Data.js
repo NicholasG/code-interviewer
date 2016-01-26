@@ -75,5 +75,22 @@ adminPanelApp.controller('DataCtrl', ['$scope', '$http', '$location','$routePara
     $scope.clearFields = function() {
         $scope.firstName = null;
         $scope.lastName = null;
+        $scope.city = null;
+        $scope.email = null;
       };
+
+      $scope.currentItem = function(itemId, edit) {
+        var url = 'api/participants/' + itemId;
+
+        $http.get(url).success(function(data) {
+          $scope.itemId = data.participantId;
+          $scope.firstName = data.firstName;
+          $scope.lastName = data.lastName;
+          $scope.city = data.city;
+          $scope.email = data.email;
+          $scope.image = data.image;
+        });
+
+        if (edit) {$("div.send-test").fadeIn("fast"); $('div.box-item-info').hide();}
+      }
   }]);

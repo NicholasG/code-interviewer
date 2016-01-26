@@ -6,6 +6,8 @@ INSERT INTO users(username, first_name, last_name, email, password, role, active
     VALUES ('manager', 'Manager', 'Manager', 'manager@gmail.com', 'manager', 'ROLE_MANAGER', TRUE, NULL, NULL);
 INSERT INTO users(username, first_name, last_name, email, password, role, active, image, background)
     VALUES ('reviewer', 'Reviewer', 'Reviewer', 'reviewer@gmail.com', 'reviewer', 'ROLE_REVIEWER', TRUE, NULL, NULL);
+INSERT INTO users(username, first_name, last_name, email, password, role, active, image, background)
+    VALUES ('interviewer', 'Interviewer', 'Interviewer', 'interviewer@gmail.com', 'interviewer', 'ROLE_INTERVIEWER', TRUE, NULL, NULL);
 
 
 INSERT INTO participants(participant_id, first_name, last_name, email, sent, returned, taken, active, image)
